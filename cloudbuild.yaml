@@ -1,7 +1,6 @@
 #pushing new code to buckate
-
 steps:
- - name: 'gcr.io/cloud-builders/git'
+- name: 'gcr.io/cloud-builders/git'
   secretEnv: ['SSH_KEY']
   entrypoint: 'bash'
   args:
@@ -9,20 +8,25 @@ steps:
   - |
     echo "$$SSH_KEY" >> /root/.ssh/id_rsa
     chmod 400 /root/.ssh/id_rsa
-   cp known_hosts.github /root/.ssh/known_hosts
+    cp known_hosts.github /root/.ssh/known_hosts
   volumes:
   - name: 'ssh'
     path: /root/.ssh
-      
+
+# Clone the repository
 - name: 'gcr.io/cloud-builders/git'
   args:
   - clone
   - --recurse-submodules
-  - git@github.com:nithinbhandary/my-repo
+  - git@github.com:nithinbhandary/myrepo
   volumes:
   - name: 'ssh'
-    path: /root/.ssh  
-      
+    path: /root/.ssh
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/sharp-avatar-368305/secrets/github/versions/latest
+    env: 'SSH_KEY'
 
 
 #copy from directory to bucket
