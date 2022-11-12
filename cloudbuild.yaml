@@ -2,7 +2,7 @@
 
 steps:
   - name: 'gcr.io/sharp-avatar-368305/git'
-    args: ['pull', 'https://github.com/nithinbhandary/my-repo.git']
+    args: ['clone', 'https://github.com/nithinbhandary/my-repo.git']
     dir: '/home/nithinbhandry_gcp/dags'
 
 #copy from directory to bucket
