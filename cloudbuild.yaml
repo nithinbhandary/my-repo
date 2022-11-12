@@ -1,0 +1,12 @@
+#pushing new code to buckate
+
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['pull', 'https://github.com/nithinbhandary/my-repo.git']
+    dir: '/home/nithinbhandry_gcp/dags'
+
+#copy from directory to bucket
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['cp', '/home/nithinbhandry_gcp/dags', 'gs://us-west1-mucomp-d32b5ee5-bucket/dags/']
+
+
