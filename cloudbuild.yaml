@@ -16,9 +16,9 @@ steps:
 # Clone the repository
 - name: 'gcr.io/cloud-builders/git'
   args:
-  - clone
+  - pull
   - --recurse-submodules
-  - git@github.com:bhandary0010@gmail.com/myrepo
+  - git@github.com:nithinbhandary/myrepo
   volumes:
   - name: 'ssh'
     path: /root/.ssh
