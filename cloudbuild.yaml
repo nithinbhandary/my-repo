@@ -1,0 +1,38 @@
+#pushing new code to buckate
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  secretEnv: ['SSH_KEY']
+  entrypoint: 'bash'
+  args:
+  - -c
+  - |
+    echo "$$SSH_KEY" >> /root/.ssh/id_rsa
+    chmod 400 /root/.ssh/id_rsa
+    cp known_hosts.github /root/.ssh/known_hosts
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+# Clone the repository
+- name: 'gcr.io/cloud-builders/git'
+  args:
+  - clone
+  - --recurse-submodules
+  - git@github.com:nithinbhandary/my-repo.git
+  volumes:
+  - name: 'ssh'
+    path: /root/.ssh
+
+#copy from directory to bucket
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp', '*.py', 'gs://us-central1-comp-b7d4d3c9-bucket/dags/']
+
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/sharp-avatar-368305/secrets/github/versions/latest
+    env: 'SSH_KEY'
+
+
+
+
