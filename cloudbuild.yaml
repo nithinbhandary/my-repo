@@ -23,14 +23,16 @@ steps:
   - name: 'ssh'
     path: /root/.ssh
 
+#copy from directory to bucket
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp', '/home/nithinbhandry_gcp/dags', 'gs://us-west1-mucomp-d32b5ee5-bucket/dags/']
+
+
 availableSecrets:
   secretManager:
   - versionName: projects/sharp-avatar-368305/secrets/github/versions/latest
     env: 'SSH_KEY'
 
 
-#copy from directory to bucket
-  - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['cp', '/home/nithinbhandry_gcp/dags', 'gs://us-west1-mucomp-d32b5ee5-bucket/dags/']
 
 
