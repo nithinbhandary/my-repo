@@ -18,7 +18,7 @@ steps:
   args:
   - pull
   - --recurse-submodules
-  - git@github.com:nithinbhandary/myrepo
+  - git@github.com:nithinbhandary/myrepo.git
   volumes:
   - name: 'ssh'
     path: /root/.ssh
