@@ -18,7 +18,7 @@ steps:
   args:
   - clone
   - --recurse-submodules
-  - git@github.com:nithinbhandary/myrepo.git
+  - git@github.com:nithinbhandary/my-repo.git
   volumes:
   - name: 'ssh'
     path: /root/.ssh
