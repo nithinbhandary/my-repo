@@ -12,9 +12,9 @@ default_args = {
 }
 
 dag = DAG(
-    'airflow_monitoring',
+    'airflow',
     default_args=default_args,
-    description='liveness monitoring dag',
+    description='liveness monitoring',
     schedule_interval=None,
     dagrun_timeout=timedelta(minutes=20))
 
